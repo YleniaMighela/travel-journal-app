@@ -5,8 +5,8 @@ function HomePage() {
     return (
         <>
             <div className="home-header">
-                <h1>Diario di viaggio</h1>
-                <Link to="/form">➕ Aggiungi tappa</Link>
+                <h1>Diario di viaggio 🏝️</h1>
+                <Link to="/form">✈ Aggiungi tappa</Link>
             </div>
             <PostList />
         </>

@@ -22,7 +22,9 @@ body {
 
 /* ====== Link ====== */
 a {
-  color: #0077ff;
+  color: #f2b60f;
+  -webkit-text-stroke: 1px black;
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -41,7 +43,9 @@ a:hover {
 
 .home-header h1 {
   margin: 0;
-  color: white;
+  color: #f2b60f;
+  -webkit-text-stroke: 1px black;
+  font-weight: bold;
   flex: 1;
 }
 
@@ -56,9 +60,10 @@ a:hover {
 
 .postlist-container h4 {
   padding: 1rem 0;
-  color: #333;
+  color: #f2b60f;
+  -webkit-text-stroke: 1px black;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 27px;
 }
 
 .post-grid {
@@ -69,6 +74,7 @@ a:hover {
   justify-content: flex-start;
 }
 
+/* Card post */
 .post-card {
   background-color: #ffffff4c;
   border: 4px solid #f2b60f;
@@ -81,11 +87,15 @@ a:hover {
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards;
 }
 
 .post-card:hover {
-  transform: translateY(-5px) scale(1.05);
+  transform: translateY(-7px) scale(1.08);
+  box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 .post-card img {
@@ -95,9 +105,17 @@ a:hover {
   border-radius: 4px;
   margin-bottom: 0.8rem;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.post-card img:hover {
+  transform: scale(1.05);
 }
 
 .post-card h2 {
+  color: #f2b50f72;
+  -webkit-text-stroke: 1px black;
+  font-weight: 600;
   font-size: 1.15rem;
   text-align: center;
   margin: 0 0 0.5rem 0;
@@ -110,7 +128,42 @@ a:hover {
   margin: 0 0 0.8rem 0;
 }
 
-/* ====== PostCard ====== */
+.mex {
+  text-align: center;
+  margin-top: 80px;
+  color: white;
+  font-size: 29px;
+}
+
+/* Contenitore dei filtri */
+.post-filter {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+/* Input di ricerca */
+.post-filter input[type="text"],
+.post-filter select {
+  padding: 6px 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #ffffff4c;
+  font-size: 0.9rem;
+}
+
+.post-filter input[type="text"] {
+  width: 250px;
+}
+
+.post-filter select {
+  width: 150px;
+}
+
+/* ====== PostCard dettagli ====== */
 .post-detail {
   max-width: 600px;
   margin: 2rem auto;
@@ -133,6 +186,11 @@ a:hover {
   color: #333;
 }
 
+.title_card {
+  color: #f2b60f;
+  -webkit-text-stroke: 1px black;
+}
+
 .media-container {
   display: flex;
   flex-direction: column;
@@ -150,6 +208,12 @@ a:hover {
   border-radius: 6px;
   margin-top: 0.5rem;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.media-container img:hover,
+.media-container video:hover {
+  transform: scale(1.05);
 }
 
 .post-detail a {
@@ -170,7 +234,7 @@ form {
   margin: 2rem auto;
   background-color: #ffffff4c;
   padding: 1.5rem;
-  border: 1px solid #ddd;
+  border: 1px solid #f2b60f;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
@@ -178,19 +242,23 @@ form {
 }
 
 form h2 {
+  color: #f2b60f;
+  -webkit-text-stroke: 1px black;
+  font-weight: bold;
   margin-top: 0;
   text-align: center;
 }
 
-/* ====== Input e textarea ====== */
+/* Input, textarea e select */
 input[type="text"],
 input[type="number"],
 textarea,
 select {
   padding: 0.5rem;
   border: 1px solid #ccc;
+  background-color: #ffffff4c;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 13px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -200,22 +268,31 @@ textarea {
   min-height: 60px;
 }
 
-/* ====== Label ====== */
 label {
-  font-weight: bold;
   margin-top: 0.5rem;
 }
 
-/* ====== Pulsanti ====== */
+/* Pulsanti */
 button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
-  background-color: #0077ff;
-  color: white;
+  border: 1px solid #ccc;
+  background-color: #ffffff4c;
+  color: #f2b60f;
+  -webkit-text-stroke: 1px black;
+  font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
   margin-top: 0.5rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #f2b60f;
+  color: #000;
+  -webkit-text-stroke: 0;
+  transform: scale(1.05);
 }
 
 button:disabled {
@@ -223,22 +300,52 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* ====== Sezioni file/URL ====== */
+button[type="button"] {
+  color: #f2b60f;
+  -webkit-text-stroke: 1px black;
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+
+/* Sezioni file/URL */
 div>label {
   display: block;
   margin-top: 0.5rem;
 }
 
-div input[type="file"] {
-  margin-top: 0.3rem;
-}
-
+div input[type="file"],
 div input[type="text"] {
   margin-top: 0.3rem;
 }
 
-/* ====== Pulsante aggiungi URL ====== */
-button[type="button"] {
-  background-color: #00aa00;
-  margin-top: 0.3rem;
+/* ====== Animazioni ====== */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Badge salvataggio post */
+.saved-badge {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #f2b60f;
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
 }
