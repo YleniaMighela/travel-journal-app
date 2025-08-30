@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function PostForm({ onPostCreated }) {
     const navigate = useNavigate();
@@ -14,7 +14,6 @@ export default function PostForm({ onPostCreated }) {
     const [negativeReflection, setNegativeReflection] = useState("");
     const [physicalEffort, setPhysicalEffort] = useState(1);
     const [economicEffort, setEconomicEffort] = useState(1);
-    const [tags, setTags] = useState("");
     const [files, setFiles] = useState([]);
     const [fileUrls, setFileUrls] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -66,7 +65,7 @@ export default function PostForm({ onPostCreated }) {
                 reflection_negative: negativeReflection,
                 physical_effort: parseInt(physicalEffort),
                 economic_effort: parseInt(economicEffort),
-                tags: tags.split(",").map((t) => t.trim()),
+
             },
         ]);
 
@@ -84,7 +83,6 @@ export default function PostForm({ onPostCreated }) {
             setNegativeReflection("");
             setPhysicalEffort(1);
             setEconomicEffort(1);
-            setTags("");
             setFiles([]);
             setFileUrls([]);
 
@@ -105,118 +103,114 @@ export default function PostForm({ onPostCreated }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Nuovo Post</h2>
+        <>
+            <Link to="/">← Torna alla lista</Link>
+            <form onSubmit={handleSubmit}>
+                <h2>Nuovo Post</h2>
 
-            {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
+                {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
 
-            <input
-                type="text"
-                placeholder="Titolo"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-            />
-            <input
-                type="text"
-                placeholder="Luogo"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                required
-            />
-            <textarea
-                placeholder="Descrizione"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-            />
-            <input
-                type="text"
-                placeholder="Stato d'animo"
-                value={mood}
-                onChange={(e) => setMood(e.target.value)}
-                required
-            />
-            <input
-                type="number"
-                placeholder="Spesa (€)"
-                value={expense}
-                onChange={(e) => setExpense(e.target.value)}
-                required
-                min="0"
-                step="0.01"
-            />
-
-            <textarea
-                placeholder="Riflessione positiva"
-                value={positiveReflection}
-                onChange={(e) => setPositiveReflection(e.target.value)}
-            />
-            <textarea
-                placeholder="Riflessione negativa"
-                value={negativeReflection}
-                onChange={(e) => setNegativeReflection(e.target.value)}
-            />
-
-            <label>Impegno fisico:</label>
-            <select
-                value={physicalEffort}
-                onChange={(e) => setPhysicalEffort(e.target.value)}
-            >
-                {[1, 2, 3, 4, 5].map((n) => (
-                    <option key={n} value={n}>
-                        {n}
-                    </option>
-                ))}
-            </select>
-
-            <label>Impegno economico:</label>
-            <select
-                value={economicEffort}
-                onChange={(e) => setEconomicEffort(e.target.value)}
-            >
-                {[1, 2, 3, 4, 5].map((n) => (
-                    <option key={n} value={n}>
-                        {n}
-                    </option>
-                ))}
-            </select>
-
-            <input
-                type="text"
-                placeholder="Tags (separati da virgola)"
-                value={tags}
-                onChange={(e) => setTags(e.target.value)}
-            />
-
-            <div>
-                <label>Carica file dal computer:</label>
                 <input
-                    type="file"
-                    multiple
-                    onChange={(e) => setFiles([...e.target.files])}
+                    type="text"
+                    placeholder="Titolo"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
                 />
-            </div>
+                <input
+                    type="text"
+                    placeholder="Luogo"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    required
+                />
+                <textarea
+                    placeholder="Descrizione"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
+                />
+                <input
+                    type="text"
+                    placeholder="Stato d'animo"
+                    value={mood}
+                    onChange={(e) => setMood(e.target.value)}
+                    required
+                />
+                <input
+                    type="number"
+                    placeholder="Spesa (€)"
+                    value={expense}
+                    onChange={(e) => setExpense(e.target.value)}
+                    required
+                    min="0"
+                    step="0.01"
+                />
 
-            <div>
-                <label>Aggiungi URL da internet:</label>
-                {fileUrls.map((url, idx) => (
+                <textarea
+                    placeholder="Riflessione positiva"
+                    value={positiveReflection}
+                    onChange={(e) => setPositiveReflection(e.target.value)}
+                />
+                <textarea
+                    placeholder="Riflessione negativa"
+                    value={negativeReflection}
+                    onChange={(e) => setNegativeReflection(e.target.value)}
+                />
+
+                <label>Impegno fisico:</label>
+                <select
+                    value={physicalEffort}
+                    onChange={(e) => setPhysicalEffort(e.target.value)}
+                >
+                    {[1, 2, 3, 4, 5].map((n) => (
+                        <option key={n} value={n}>
+                            {n}
+                        </option>
+                    ))}
+                </select>
+
+                <label>Impegno economico:</label>
+                <select
+                    value={economicEffort}
+                    onChange={(e) => setEconomicEffort(e.target.value)}
+                >
+                    {[1, 2, 3, 4, 5].map((n) => (
+                        <option key={n} value={n}>
+                            {n}
+                        </option>
+                    ))}
+                </select>
+
+                <div>
+                    <label>Carica file dal computer:</label>
                     <input
-                        key={idx}
-                        type="text"
-                        placeholder="URL immagine/video"
-                        value={url}
-                        onChange={(e) => updateUrl(idx, e.target.value)}
+                        type="file"
+                        multiple
+                        onChange={(e) => setFiles([...e.target.files])}
                     />
-                ))}
-                <button type="button" onClick={addUrlField}>
-                    + Aggiungi un URL
-                </button>
-            </div>
+                </div>
 
-            <button type="submit" disabled={loading}>
-                {loading ? "Salvando..." : "Salva Post"}
-            </button>
-        </form>
+                <div>
+                    <label>Aggiungi URL da internet:</label>
+                    {fileUrls.map((url, idx) => (
+                        <input
+                            key={idx}
+                            type="text"
+                            placeholder="URL immagine/video"
+                            value={url}
+                            onChange={(e) => updateUrl(idx, e.target.value)}
+                        />
+                    ))}
+                    <button type="button" onClick={addUrlField}>
+                        + Aggiungi un URL
+                    </button>
+                </div>
+
+                <button type="submit" disabled={loading}>
+                    {loading ? "Salvando..." : "Salva Post"}
+                </button>
+            </form>
+        </>
     );
 }

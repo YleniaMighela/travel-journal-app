@@ -31,18 +31,16 @@ function PostCard() {
     return (
         <div className="post-detail">
             <Link to="/">← Torna alla lista</Link>
-            <h2>{post.title}</h2>
-            <p><strong>Luogo:</strong> {post.location}</p>
-            <p><strong>Descrizione:</strong> {post.description}</p>
-            <p><strong>Stato d’animo:</strong> {post.mood}</p>
-            <p><strong>Spesa:</strong> €{post.expense}</p>
-            <p><strong>Riflessione positiva:</strong> {post.reflection_positive}</p>
-            <p><strong>Riflessione negativa:</strong> {post.reflection_negative}</p>
-            <p><strong>Impegno fisico:</strong> {post.physical_effort} / 5</p>
-            <p><strong>Impegno economico:</strong> {post.economic_effort} / 5</p>
-            {post.tags && post.tags.length > 0 && (
-                <p><strong>Tags:</strong> {post.tags.join(", ")}</p>
-            )}
+            <h2><em className="title_card">{post.title}</em></h2>
+            <p><strong>Luogo:</strong> <em>{post.location}</em></p>
+            <p><strong>Descrizione:</strong> <em>{post.description}</em></p>
+            <p><strong>Stato d’animo:</strong> <em>{post.mood}</em></p>
+            <p><strong>Spesa:</strong> <em>€{post.expense}</em></p>
+            <p><strong>Riflessione positiva:</strong> <em>{post.reflection_positive}</em></p>
+            <p><strong>Riflessione negativa:</strong> <em>{post.reflection_negative}</em></p>
+            <p><strong>Impegno fisico:</strong> <em>{post.physical_effort}</em> / 5</p>
+            <p><strong>Impegno economico:</strong> <em>{post.economic_effort}</em> / 5</p>
+
             {post.media_urls && post.media_urls.length > 0 && (
                 <div className="media-container">
                     {post.media_urls.map((url, idx) =>
