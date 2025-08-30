@@ -414,33 +414,37 @@ div input[type="text"] {
 
   .post-filter {
     flex-direction: column;
+    /* metti input e select uno sotto l’altro */
     gap: 0.5rem;
+    align-items: stretch;
   }
 
   .post-filter input[type="text"],
   .post-filter select {
     width: 100%;
   }
+}
 
-  form {
-    max-width: 95%;
-    padding: 1rem;
-  }
 
-  .post-detail {
-    max-width: 95%;
-    padding: 0.8rem;
-  }
+form {
+  max-width: 95%;
+  padding: 1rem;
+}
 
-  .media-container img,
-  .media-container video {
-    max-width: 100%;
-  }
+.post-detail {
+  max-width: 95%;
+  padding: 0.8rem;
+}
 
-  .mex {
-    font-size: 24px;
-    margin-top: 50px;
-  }
+.media-container img,
+.media-container video {
+  max-width: 100%;
+}
+
+.mex {
+  font-size: 24px;
+  margin-top: 50px;
+}
 }
 
 /* ====== Piccoli smartphone ====== */
